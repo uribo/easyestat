@@ -1,0 +1,27 @@
+url: https://uribo.github.io/easyestat
+
+authors:
+  Shinya Uryu:
+    href: https://suryu.me
+
+templates:
+  params:
+    bootswatch: paper
+
+development:
+  mode: auto
+
+navbar:
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: News
+    href: news/index.html
+
+reference:
+  - title: "map"
+    contents:
+    - download_stat_map

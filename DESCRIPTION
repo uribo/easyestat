@@ -1,0 +1,28 @@
+Package: easyestat
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Shinya",
+           family = "Uryu",
+           role = c("aut", "cre"),
+           email = "suika1127@gmail.com",
+           comment = c(ORCID = "0000-0002-0493-6186"))
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    dplyr (>= 0.8.3),
+    glue (>= 1.3.1),
+    httr (>= 1.4.1),
+    magrittr (>= 1.5),
+    purrr (>= 0.3.3),
+    rlang (>= 0.4.2),
+    stringr (>= 1.4.0)
+Suggests:
+    devtools (>= 2.2.1),
+    pkgdown (>= 1.4.1.9000)
+LazyData: true
+URL: https://github.com/uribo/easyestat
+BugReports: https://github.com/uribo/easyestat/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.2

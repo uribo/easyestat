@@ -1,0 +1,14 @@
+^renv$
+^renv\.lock$
+^easyestat\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^Dockerfile$
+^docker-compose\.yml$
+^\.env$
+^pkgdown\.yml$
+^\.Rprofile$
+^\.github$
