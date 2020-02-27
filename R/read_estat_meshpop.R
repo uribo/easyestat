@@ -6,12 +6,12 @@ read_estat_meshpop <- function(file, mesh_size = 0.5) {
   d <-
     utils::read.csv(file, fileEncoding = "cp932", stringsAsFactors = FALSE)
   col_vars <-
-    d[1,] %>%
+    d[1, ] %>%
     purrr::modify(
       ~ stringr::str_trim(.x, side = "left") %>%
         stringr::str_replace("[[:space:]]", "_") %>%
-        stringr::str_replace(" ", "_") %>%
-        stringi::stri_trans_nfkc())
+        stringi::stri_trans_nfkc() %>%
+        stringr::str_replace("~", "-"))
   d %>%
     tibble::as_tibble() %>%
     dplyr::slice(-1) %>%
