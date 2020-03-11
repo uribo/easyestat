@@ -13,6 +13,6 @@ RUN set -x && \
   echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
 
 RUN set -x && \
-  install2.r --error --skipinstalled --repos 'http://mran.revolutionanalytics.com/snapshot/2020-01-15' \
+  install2.r --error --skipinstalled --repos 'http://mran.revolutionanalytics.com/snapshot/2020-03-09' \
     renv && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
