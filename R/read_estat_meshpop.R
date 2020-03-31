@@ -2,7 +2,7 @@
 #' @param file Path to downloaded e-Stat text file
 #' @param mesh_size Currently, only 0.5 (500m mesh)
 #' @export
-read_estat_meshpop <- function(file, mesh_size = 0.5) {
+read_estat_meshpop <- function(file, is_long = FALSE, mesh_size = 0.5) {
   d <-
     utils::read.csv(file, fileEncoding = "cp932", stringsAsFactors = FALSE)
   col_vars <-
@@ -21,4 +21,12 @@ read_estat_meshpop <- function(file, mesh_size = 0.5) {
     dplyr::mutate_all(~ na_if(., "")) %>%
     utils::type.convert() %>%
     dplyr::mutate_at(dplyr::vars(seq.int(3)), as.character)
+  if (is_long == TRUE) {
+    d <-
+      d %>%
+      tidyr::pivot_longer(cols = seq.int(5, ncol(d)),
+                          names_to = "variable",
+                          values_to = "population")
+  }
+  d
 }
