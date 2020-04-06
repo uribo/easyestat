@@ -4,16 +4,27 @@
 \alias{download_stat_map}
 \title{Download Japan prefecture map from e-stat}
 \usage{
-download_stat_map(prefcode, exdir = ".", dest = TRUE)
+download_stat_map(
+  prefcode,
+  exdir = ".",
+  dest = TRUE,
+  .survey_id = c("A002005212015")
+)
 }
 \arguments{
-\item{prefcode}{jis code for prefecture and city identifical number. If prefecture, must be from 1 to 47.}
+\item{prefcode}{The JIS-code for prefecture and city identical number.
+If prefecture, must be from 1 to 47.}
 
 \item{exdir}{The directory to extract files to (the equivalent of
     \code{unzip -d}).  It will be created if necessary.}
 
-\item{dest}{If TRUE, to unzip downloaded files.}
+\item{dest}{If \emph{TRUE}, to unzip downloaded files.}
+
+\item{.survey_id}{survey id}
 }
 \description{
 Download Japan prefecture map from e-stat
+}
+\seealso{
+\url{https://www.e-stat.go.jp/gis}
 }

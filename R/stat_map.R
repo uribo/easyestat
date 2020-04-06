@@ -1,8 +1,10 @@
 #' Download Japan prefecture map from e-stat
-#' @param prefcode The JIS-code for prefecture and city identifical number.
+#' @param prefcode The JIS-code for prefecture and city identical number.
 #' If prefecture, must be from 1 to 47.
-#' @param dest If TRUE, to unzip downloaded files.
+#' @param dest If *TRUE*, to unzip downloaded files.
+#' @param .survey_id survey id
 #' @inheritParams utils::unzip
+#' @seealso [https://www.e-stat.go.jp/gis](https://www.e-stat.go.jp/gis)
 #' @export
 download_stat_map <- function(prefcode, exdir = ".", dest = TRUE, .survey_id = c("A002005212015")) {
   prefcode <-
