@@ -31,3 +31,48 @@ download_stat_map <- function(prefcode, exdir = ".", dest = TRUE, .survey_id = c
     )
   }
 }
+
+#' Read e-stat aggregation unit boundary data
+#' @description
+#' The GIS data downloaded from e-stat is read and converted into an easy to process [sf::sf] format.
+#' You can use [download_stat_map()] to download the data.
+#' @param file Path to downloaded e-Stat shape file
+#' @param type Currently, only "aggregate_unit" is used.
+#' @param remove_cols Whether or not to remove redundant columns.
+#' When *TRUE* (the default), the following columns are removed (See details).
+#' These columns can be substituted or sought with values from other columns.
+#'   * S_AREA
+#'   * KAxx_, KAxx_id
+#'   * KEN, KEN_NAME
+#'   * DUMMY1
+#'   * X_CODE, Y_CODE
+#' @export
+read_estat_map <- function(file, type = "aggregate_unit", remove_cols = TRUE) {
+  x_code <- y_code <- s_area <- ken <- ken_name <- dummy1 <- NULL
+  d <-
+    sf::st_read(file,
+            as_tibble = TRUE,
+            stringsAsFactors = FALSE)
+  d <-
+    d %>%
+    purrr::set_names(d %>%
+                       names() %>%
+                       tolower())
+
+  if (remove_cols == TRUE) {
+    d <-
+      d %>%
+      dplyr::select(
+        -x_code, -y_code,
+        -s_area,
+        -tidyselect::contains("kaxx_"),
+        -ken, -ken_name, -dummy1)
+  }
+  d
+}
+
+# prefcode = "08"
+# .survey_id = "A002005212010"
+# https://www.e-stat.go.jp/gis/statmap-search?page=1&type=2&aggregateUnitForBoundary=A&toukeiCode=00200521&toukeiYear=2005&serveyId=A002005212005&prefCode=08&coordsys=1&format=shape
+# x
+# https://www.e-stat.go.jp/gis/statmap-search/data?dlserveyId=A002005212010&code=08&coordSys=1&format=shape&downloadType=5

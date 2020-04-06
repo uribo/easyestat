@@ -2,5 +2,6 @@
 
 export("%>%")
 export(download_stat_map)
+export(read_estat_map)
 export(read_estat_meshpop)
 importFrom(magrittr,"%>%")
