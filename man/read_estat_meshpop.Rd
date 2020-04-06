@@ -4,10 +4,13 @@
 \alias{read_estat_meshpop}
 \title{Read e-Stat mesh population census data}
 \usage{
-read_estat_meshpop(file, mesh_size = 0.5)
+read_estat_meshpop(file, is_long = FALSE, mesh_size = 0.5)
 }
 \arguments{
 \item{file}{Path to downloaded e-Stat text file}
+
+\item{is_long}{If \emph{TRUE}, make the population category a single variable
+and make the values of the counterpart population independent.}
 
 \item{mesh_size}{Currently, only 0.5 (500m mesh)}
 }
