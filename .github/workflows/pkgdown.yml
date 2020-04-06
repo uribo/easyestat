@@ -8,27 +8,33 @@ jobs:
   pkgdown:
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-pandoc@master
 
-    - uses: r-lib/actions/setup-r@master
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+        shell: Rscript {0}
 
-    - uses: r-lib/actions/setup-pandoc@master
+      - name: Cache R packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: macOS-r-3.6-${{ hashFiles('depends.Rds') }}
+          restore-keys: macOS-r-3.6-
 
-    - uses: actions/cache@v1
-      if: startsWith(runner.os, 'macOS')
-      with:
-        path: ~/Library/Application Support/renv
-        key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-renv-
-    - name: Install Package Dependencies
-      run: |-
-        Rscript -e "install.packages('renv')"
-        Rscript -e "renv::restore(confirm = FALSE)"
+      - name: Install dependencies
+        run: |
+          install.packages("remotes")
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_dev("pkgdown")
+        shell: Rscript {0}
 
-    - name: Install package
-      run: R CMD INSTALL .
+      - name: Install package
+        run: R CMD INSTALL .
 
-    - name: Deploy package
-      run: |
-        Rscript -e "pkgdown:::deploy_local(new_process = FALSE, remote_url = 'https://x-access-token:${{secrets.GITHUB_PAT}}@github.com/${{github.repository}}.git')"
+      - name: Deploy package
+        run: pkgdown::deploy_to_branch(new_process = FALSE)
+        shell: Rscript {0}
