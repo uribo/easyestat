@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download Japan prefecture map from e-stat — download_stat_map • easyestat</title>
+<title>Read e-Stat mesh population census data — read_estat_meshpop • easyestat</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Download Japan prefecture map from e-stat — download_stat_map" />
-<meta property="og:description" content="Download Japan prefecture map from e-stat" />
+<meta property="og:title" content="Read e-Stat mesh population census data — read_estat_meshpop" />
+<meta property="og:description" content="Read e-Stat mesh population census data" />
 
 
 
@@ -108,48 +108,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download Japan prefecture map from e-stat</h1>
-    <small class="dont-index">Source: <a href='https://github.com/uribo/easyestat/blob/master/R/stat_map.R'><code>R/stat_map.R</code></a></small>
-    <div class="hidden name"><code>download_stat_map.Rd</code></div>
+    <h1>Read e-Stat mesh population census data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/uribo/easyestat/blob/master/R/read_estat_meshpop.R'><code>R/read_estat_meshpop.R</code></a></small>
+    <div class="hidden name"><code>read_estat_meshpop.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download Japan prefecture map from e-stat</p>
+    <p>Read e-Stat mesh population census data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>download_stat_map</span>(
-  <span class='no'>prefcode</span>,
-  <span class='kw'>exdir</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>dest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>.survey_id</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A002005212015"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>read_estat_meshpop</span>(<span class='no'>file</span>, <span class='kw'>is_long</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mesh_size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>prefcode</th>
-      <td><p>The JIS-code for prefecture and city identical number.
-If prefecture, must be from 1 to 47.</p></td>
+      <th>file</th>
+      <td><p>Path to downloaded e-Stat text file</p></td>
     </tr>
     <tr>
-      <th>exdir</th>
-      <td><p>The directory to extract files to (the equivalent of
-    <code>unzip -d</code>).  It will be created if necessary.</p></td>
+      <th>is_long</th>
+      <td><p>If <em>TRUE</em>, make the population category a single variable
+and make the values of the counterpart population independent.</p></td>
     </tr>
     <tr>
-      <th>dest</th>
-      <td><p>If <em>TRUE</em>, to unzip downloaded files.</p></td>
-    </tr>
-    <tr>
-      <th>.survey_id</th>
-      <td><p>survey id</p></td>
+      <th>mesh_size</th>
+      <td><p>Currently, only 0.5 (500m mesh)</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='https://www.e-stat.go.jp/gis'>https://www.e-stat.go.jp/gis</a></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
