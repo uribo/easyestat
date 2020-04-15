@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages("remotes")
-          remotes::install_deps(dependencies = TRUE, repos = "https://cran.microsoft.com/snapshot/2020-03-23")
+          remotes::install_deps(dependencies = TRUE, repos = "https://cran.microsoft.com/snapshot/2020-04-13")
           remotes::install_dev("pkgdown")
         shell: Rscript {0}
 
