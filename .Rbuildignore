@@ -12,3 +12,4 @@
 ^pkgdown\.yml$
 ^\.Rprofile$
 ^\.github$
+^README\.Rmd$
