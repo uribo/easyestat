@@ -2,3 +2,4 @@
 .Rhistory
 docs/
 .env
+.DS_Store
