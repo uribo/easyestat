@@ -57,6 +57,7 @@ download_stat_map <- function(prefcode, exdir = ".", dest = TRUE, .survey_id = c
 #' @export
 read_estat_map <- function(file, type = "aggregate_unit", remove_cols = TRUE) {
   x_code <- y_code <- s_area <- ken <- ken_name <- dummy1 <- NULL
+  area <- perimeter <- menseki <- km2 <- m2 <- m <- NULL
   d <-
     sf::st_read(file,
             as_tibble = TRUE,
@@ -67,6 +68,17 @@ read_estat_map <- function(file, type = "aggregate_unit", remove_cols = TRUE) {
                        names() %>%
                        tolower())
 
+  if (utils::hasName(d, "area")) {
+    d <-
+      d %>%
+      dplyr::mutate(area = units::set_units(area, m2),
+                    perimeter = units::set_units(perimeter, m))
+  }
+  if (utils::hasName(d, "menseki")) {
+    d <-
+      d %>%
+      dplyr::mutate(menseki = units::set_units(menseki, km2))
+  }
   if (remove_cols == TRUE) {
     d <-
       d %>%
