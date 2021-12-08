@@ -7,7 +7,8 @@
 read_estat_meshpop(file, is_long = FALSE, mesh_size = 0.5)
 }
 \arguments{
-\item{file}{Path to downloaded e-Stat text file}
+\item{file}{Path to downloaded e-Stat text file,
+such as \verb{tblT000847H\{meshcode\}.txt}}
 
 \item{is_long}{If \emph{TRUE}, make the population category a single variable
 and make the values of the counterpart population independent.}

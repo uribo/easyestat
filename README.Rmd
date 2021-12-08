@@ -35,6 +35,30 @@ remotes::install_github("uribo/easyestat")
 
 ## Example
 
-- 政府統計 国勢調査
-- 政府統計 人口推計
+### 地図で見る統計(統計GIS)
+
+統計GISでダウンロード可能な境界データの処理を行う関数を用意しています。
+
+**小地域**
+
+```{r, eval = FALSE, echo = TRUE}
+download_stat_map(prefcode = "36", .survey_id = "A002005212015")
+```
+
+```{r, eval=FALSE, echo=TRUE}
+read_estat_map("A002005212015DDSWC36/h27ka36.shp")
+```
+
+**人口集中地区**
+
+```{r, eval=FALSE, echo=TRUE}
+download_stat_map(prefcode = "08", .survey_id = "D002005212015")
+read_estat_map("D002005212015DDSWC08/h27_did_08.shp")
+```
+
+**4次メッシュ（500mメッシュ） その１　人口等基本集計に関する事項**
+
+```{r, eval=FALSE, echo=TRUE}
+read_estat_meshpop("tblT000847H3622.txt")
+```
 

@@ -32,4 +32,4 @@ LazyData: true
 URL: https://uribo.github.io/easyestat/, https://github.com/uribo/easyestat
 BugReports: https://github.com/uribo/easyestat/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.2
