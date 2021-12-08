@@ -20,7 +20,8 @@ If prefecture, must be from 1 to 47.}
 
 \item{dest}{If \emph{TRUE}, to unzip downloaded files.}
 
-\item{.survey_id}{survey id}
+\item{.survey_id}{survey id (A00200521YYYY is small area,
+D00200521YYYY is did area)}
 }
 \description{
 Download Japan prefecture map from e-stat

@@ -2,7 +2,8 @@
 #' @param prefcode The JIS-code for prefecture and city identical number.
 #' If prefecture, must be from 1 to 47.
 #' @param dest If *TRUE*, to unzip downloaded files.
-#' @param .survey_id survey id
+#' @param .survey_id survey id (A00200521YYYY is small area,
+#' D00200521YYYY is did area)
 #' @inheritParams utils::unzip
 #' @seealso [https://www.e-stat.go.jp/gis](https://www.e-stat.go.jp/gis)
 #' @export
@@ -10,6 +11,13 @@ download_stat_map <- function(prefcode, exdir = ".", dest = TRUE, .survey_id = c
   prefcode <-
     stringr::str_pad(prefcode, width = 2, pad = "0")
   rlang::arg_match(prefcode, values = stringr::str_pad(seq.int(47), width = 2, pad = "0"))
+  .survey_id <-
+    rlang::arg_match(
+      .survey_id,
+      c(paste0(rep(c("A00200521", "D00200521"), each = 2),
+               rep(c(2015, 2010), 2)),
+        "A002005212005",
+        "A002005212000"))
   x <-
     glue::glue(
       "https://www.e-stat.go.jp/gis/statmap-search/data?dlserveyId={.survey_id}&code={prefcode}&coordSys=1&format=shape&downloadType=5"
