@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_map.R
 \name{download_stat_map}
 \alias{download_stat_map}
-\title{Download Japan prefecture map from e-stat}
+\title{Download Japan prefecture map from e-Stat}
 \usage{
 download_stat_map(
   prefcode,
@@ -24,7 +24,7 @@ If prefecture, must be from 1 to 47.}
 D00200521YYYY is did area)}
 }
 \description{
-Download Japan prefecture map from e-stat
+Download Japan prefecture map from e-Stat
 }
 \seealso{
 \url{https://www.e-stat.go.jp/gis}

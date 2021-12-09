@@ -13,3 +13,4 @@
 ^\.Rprofile$
 ^\.github$
 ^README\.Rmd$
+^data-raw$

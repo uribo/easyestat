@@ -1,4 +1,4 @@
-#' Download Japan prefecture map from e-stat
+#' Download Japan prefecture map from e-Stat
 #' @param prefcode The JIS-code for prefecture and city identical number.
 #' If prefecture, must be from 1 to 47.
 #' @param dest If *TRUE*, to unzip downloaded files.
@@ -20,7 +20,7 @@ download_stat_map <- function(prefcode, exdir = ".", dest = TRUE, .survey_id = c
         "A002005212000"))
   x <-
     glue::glue(
-      "https://www.e-stat.go.jp/gis/statmap-search/data?dlserveyId={.survey_id}&code={prefcode}&coordSys=1&format=shape&downloadType=5"
+      "https://www.e-stat.go.jp/gis/statmap-search/data?dlserveyId={.survey_id}&code={prefcode}&coordSys=1&format=shape&downloadType=5&datum=2000"
     )
   qry <-
     purrr::pluck(httr::parse_url(x), "query")
@@ -40,9 +40,9 @@ download_stat_map <- function(prefcode, exdir = ".", dest = TRUE, .survey_id = c
   }
 }
 
-#' Read e-stat aggregation unit boundary data
+#' Read e-Stat aggregation unit boundary data
 #' @description
-#' The GIS data downloaded from e-stat is read and converted into an easy to process [sf::sf] format.
+#' The GIS data downloaded from e-Stat is read and converted into an easy to process [sf::sf] format.
 #' You can use [download_stat_map()] to download the data.
 #' @param file Path to downloaded e-Stat shape file
 #' @param type Currently, only "aggregate_unit" is used.
@@ -80,13 +80,20 @@ read_estat_map <- function(file, type = "aggregate_unit", remove_cols = TRUE) {
       dplyr::mutate(menseki = units::set_units(menseki, km2))
   }
   if (remove_cols == TRUE) {
-    d <-
-      d %>%
-      dplyr::select(
-        -x_code, -y_code,
-        -s_area,
-        -tidyselect::contains("kaxx_"),
-        -ken, -ken_name, -dummy1)
+    ncols <-
+      ncol(d)
+    if (ncols == 36L) {
+      d <-
+        d %>%
+        dplyr::select(
+          -x_code, -y_code,
+          -s_area,
+          -tidyselect::contains("kaxx_"),
+          -ken, -ken_name, -dummy1)
+    } else if (ncols == 26L) {
+      d <-
+        d
+    }
   }
   d
 }

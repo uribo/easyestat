@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_map.R
 \name{read_estat_map}
 \alias{read_estat_map}
-\title{Read e-stat aggregation unit boundary data}
+\title{Read e-Stat aggregation unit boundary data}
 \usage{
 read_estat_map(file, type = "aggregate_unit", remove_cols = TRUE)
 }
@@ -23,6 +23,6 @@ These columns can be substituted or sought with values from other columns.
 }}
 }
 \description{
-The GIS data downloaded from e-stat is read and converted into an easy to process \link[sf:sf]{sf::sf} format.
+The GIS data downloaded from e-Stat is read and converted into an easy to process \link[sf:sf]{sf::sf} format.
 You can use \code{\link[=download_stat_map]{download_stat_map()}} to download the data.
 }
