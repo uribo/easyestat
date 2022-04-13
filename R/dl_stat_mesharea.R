@@ -13,8 +13,20 @@ dl_stat_mesharea <- function(tbl_code, meshcode, exdir = ".", dest = TRUE) {
     )
 }
 
-list_mesh_tbl_code <-
-  c(`1km` = "T000846",
+download_stat_data <- function(code, exdir = ".", .stats_id = "T000846") {
+  x <-
+    glue::glue("https://www.e-stat.go.jp/gis/statmap-search/data?statsId={.stats_id}&code={code}&downloadType=2")
+  qry <- purrr::pluck(httr::parse_url(x), "query")
+  destfile <- glue::glue("{exdir}/{qry$statsId}{qry$code}.zip")
+  utils::download.file(url = x, destfile = destfile)
+  utils::unzip(zipfile = destfile,
+               exdir = exdir)
+  unlink(destfile)
+}
+
+list_tbl_code <-
+  c(`small_area` = "T000848",
+    `1km` = "T000846",
     `500m` = "T000847",
     `250m` = "T000876")
 
