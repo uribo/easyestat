@@ -19,10 +19,7 @@ APIが発行するアプリケーションIDが必要となりますので、各
 パッケージは現在CRANには登録されていません。次のコマンドを実行してインストールをしてください。
 
 ``` r
-if (!requireNamespace("remotes"))
-  install.packages("remotes")
-
-remotes::install_github("uribo/easyestat")
+install.packages("easyestat", repos = "https://uribo.r-universe.dev")
 ```
 
 ## Example

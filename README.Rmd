@@ -27,10 +27,7 @@ easyestatパッケージは[e-Stat 政府統計の総合窓口](https://www.e-st
 パッケージは現在CRANには登録されていません。次のコマンドを実行してインストールをしてください。
 
 ``` r
-if (!requireNamespace("remotes"))
-  install.packages("remotes")
-
-remotes::install_github("uribo/easyestat")
+install.packages("easyestat", repos = "https://uribo.r-universe.dev")
 ```
 
 ## Example
