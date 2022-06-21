@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,26 +33,20 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">easyestat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/uribo/easyestat/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/uribo/easyestat/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -66,43 +62,91 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-What the package does (one paragraph).
+<div class="section level1">
+<div class="page-header"><h1 id="easyestat">easyestat<a class="anchor" aria-label="anchor" href="#easyestat"></a>
+</h1></div>
+<!-- badges: start --><!-- badges: end --><p>easyestatパッケージは<a href="https://www.e-stat.go.jp" class="external-link">e-Stat 政府統計の総合窓口</a>に掲載されている各種統計データをR上で扱いやすくした整形データとして提供するものです。</p>
+<p>一部のデータはe-Stat API（統計データを機械判読可能な形式で取得できるAPI機能）を介して利用可能になります。e-Stat APIが発行するアプリケーションIDが必要となりますので、各自で用意するようにしてください（該当する関数の引数<em>appId</em>に値を指定）。 なお、このサービスは、政府統計総合窓口(e-Stat)のAPI機能を使用していますが、サービスの内容は国によって保証されたものではありません。</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>パッケージは現在CRANには登録されていません。次のコマンドを実行してインストールをしてください。</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"uribo/easyestat"</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<div class="section level3">
+<h3 id="地図で見る統計統計gis">地図で見る統計(統計GIS)<a class="anchor" aria-label="anchor" href="#%E5%9C%B0%E5%9B%B3%E3%81%A7%E8%A6%8B%E3%82%8B%E7%B5%B1%E8%A8%88%E7%B5%B1%E8%A8%88gis"></a>
+</h3>
+<p>統計GISで提供される境界データのダウンロードを <code><a href="reference/download_stat_map.html">download_stat_map()</a></code>で実行します。ダウンロードしたShapefileを<code><a href="reference/read_estat_map.html">read_estat_map()</a></code>で読み込むことでsf形式のオブジェクトとしてR上で境界データを扱えるようになります。</p>
+<p><strong>小地域</strong></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/download_stat_map.html">download_stat_map</a></span><span class="op">(</span>prefcode <span class="op">=</span> <span class="st">"36"</span>, .survey_id <span class="op">=</span> <span class="st">"A002005212015"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/read_estat_map.html">read_estat_map</a></span><span class="op">(</span><span class="st">"A002005212015DDSWC36/h27ka36.shp"</span><span class="op">)</span></code></pre></div>
+<p><strong>人口集中地区</strong></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/download_stat_map.html">download_stat_map</a></span><span class="op">(</span>prefcode <span class="op">=</span> <span class="st">"08"</span>, .survey_id <span class="op">=</span> <span class="st">"D002005212015"</span><span class="op">)</span>
+<span class="fu"><a href="reference/read_estat_map.html">read_estat_map</a></span><span class="op">(</span><span class="st">"D002005212015DDSWC08/h27_did_08.shp"</span><span class="op">)</span></code></pre></div>
+<p><strong>4次メッシュ（500mメッシュ） その１　人口等基本集計に関する事項</strong></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/read_estat_meshpop.html">read_estat_meshpop</a></span><span class="op">(</span><span class="st">"tblT000847H3622.txt"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/uribo/easyestat/">https://​github.com/​uribo/​easyestat/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/uribo/easyestat/issues">https://​github.com/​uribo/​easyestat/​issues</a>
-</li>
+<li><a href="https://github.com/uribo/easyestat/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/uribo/easyestat/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Shinya Uryu <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0493-6186" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing easyestat</a></li>
 </ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Shinya Uryu <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0493-6186" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Shinya Uryu.</p>
+  <p></p>
+<p>Developed by Shinya Uryu.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>
@@ -110,6 +154,8 @@ What the package does (one paragraph).
 
   
 
+
+  
 
   </body>
 </html>
